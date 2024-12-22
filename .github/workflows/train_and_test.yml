@@ -44,9 +44,3 @@ jobs:
     - name: Run tests
       run: |
         pytest test/test_model.py -v
-        
-    - name: Upload trained model
-      uses: actions/upload-artifact@v3
-      with:
-        name: trained-model
-        path: best_model.pth 

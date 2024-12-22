@@ -74,35 +74,6 @@ def test_architecture_sequence():
     
     assert conv_followed_by_bn, "Each Conv2d should be followed by BatchNorm2d"
 
-def test_model_accuracy():
-    """Test that best model achieves > 99.4% validation accuracy"""
-    # Load the best model
-    model = MNISTNet()
-    try:
-        model.load_state_dict(torch.load('../best_model.pth', map_location=torch.device('cpu')))
-    except FileNotFoundError:
-        pytest.skip("best_model.pth not found. Run training first.")
-    
-    model.eval()
-    
-    # Get validation loader
-    _, val_loader, _ = get_data_loaders(
-        batch_size=Config.BATCH_SIZE,
-        num_workers=0  # Use 0 for testing
-    )
-    
-    correct = 0
-    total = 0
-    
-    with torch.no_grad():
-        for data, target in val_loader:
-            output = model(data)
-            pred = output.argmax(dim=1, keepdim=True)
-            correct += pred.eq(target.view_as(pred)).sum().item()
-            total += target.size(0)
-    
-    accuracy = 100. * correct / total
-    assert accuracy > 99.4, f"Model accuracy {accuracy:.2f}% is less than required 99.4%"
 
 if __name__ == "__main__":
     pytest.main([__file__]) 

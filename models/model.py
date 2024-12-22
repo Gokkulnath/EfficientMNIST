@@ -7,21 +7,21 @@ class MNISTNet(nn.Module):
         super(MNISTNet, self).__init__()
         
         # Initial convolution block
-        self.conv1a = nn.Conv2d(1, 8, kernel_size=3, bias=False)  # output: 8x26x26, RF: 3x3
+        self.conv1a = nn.Conv2d(1, 8, kernel_size=3)  # output: 8x26x26, RF: 3x3
         self.bn1a = nn.BatchNorm2d(8)
-        self.conv1b = nn.Conv2d(8, 16, kernel_size=3, bias=False)  # output: 16x24x24, RF: 5x5
+        self.conv1b = nn.Conv2d(8, 16, kernel_size=3)  # output: 16x24x24, RF: 5x5
         self.bn1 = nn.BatchNorm2d(16)
         self.pool1 = nn.MaxPool2d(2, 2)  # output: 16x12x12, RF: 10x10
         
         # Second convolution block
-        self.conv2a = nn.Conv2d(16, 16, kernel_size=3, bias=False)  # output: 16x10x10, RF: 14x14
+        self.conv2a = nn.Conv2d(16, 16, kernel_size=3)  # output: 16x10x10, RF: 14x14
         self.bn2a = nn.BatchNorm2d(16)
-        self.conv2b = nn.Conv2d(16, 32, kernel_size=3, bias=False)  # output: 16x8x8, RF: 18x18
+        self.conv2b = nn.Conv2d(16, 32, kernel_size=3)  # output: 16x8x8, RF: 18x18
         self.bn2 = nn.BatchNorm2d(32)
         self.pool2 = nn.MaxPool2d(2, 2)  # output: 16x4x4, RF: 36x36
         
         # Third convolution block
-        self.conv3 = nn.Conv2d(32, 32, kernel_size=3, bias=False)  # output: 32x2x2, RF: 44x44
+        self.conv3 = nn.Conv2d(32, 32, kernel_size=3)  # output: 32x2x2, RF: 44x44
         self.bn3 = nn.BatchNorm2d(32)  # output: 32x2x2, RF: 44x44
         
         # Global Average Pooling and final layers

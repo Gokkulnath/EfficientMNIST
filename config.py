@@ -2,7 +2,7 @@ import torch
 
 class Config:
     # Data parameters
-    BATCH_SIZE = 256
+    BATCH_SIZE = 512
     NUM_WORKERS = 4
     
     # Training parameters
