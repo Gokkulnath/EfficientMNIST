@@ -12,6 +12,7 @@ A highly efficient PyTorch implementation of a CNN classifier for the MNIST data
 
 ## Model Architecture 
 
+```
 Input Image (1x28x28)
 │
 ├── Conv1a (8 channels, 3x3) -> BN -> ReLU
@@ -24,7 +25,7 @@ Input Image (1x28x28)
 │
 ├── Global AvgPool (2x2)
 └── FC Layer (10 outputs)
-
+```
 
 ## Requirements
 
@@ -72,6 +73,7 @@ DROPOUT_RATE = 0.05
 
 ## Project Structure
 
+```
 ├── models/
 │ └── model.py # Model architecture
 ├── utils/
@@ -82,10 +84,57 @@ DROPOUT_RATE = 0.05
 ├── config.py # Configuration parameters
 ├── train.py # Training script
 └── requirements.txt # Dependencies
+```
 
 # Training Logs
 
 ```
+================================================================================
+Model Summary for MNISTNet
+================================================================================
+
+Total Trainable Parameters: 17,994
+--------------------------------------------------------------------------------
+
+Layer Details:
+--------------------------------------------------------------------------------
+Layer                                    Output Shape         Params
+--------------------------------------------------------------------------------
+Conv2d-1                                 [1, 8, 26, 26]       80        
+BatchNorm2d-2                            [1, 8, 26, 26]       16        
+Conv2d-3                                 [1, 16, 24, 24]      1168
+BatchNorm2d-4                            [1, 16, 24, 24]      32
+MaxPool2d-5                              [1, 16, 12, 12]      0
+Dropout-6                                [1, 16, 12, 12]      0
+Conv2d-7                                 [1, 16, 10, 10]      2320
+BatchNorm2d-8                            [1, 16, 10, 10]      32
+Conv2d-9                                 [1, 32, 8, 8]        4640
+BatchNorm2d-10                           [1, 32, 8, 8]        64
+MaxPool2d-11                             [1, 32, 4, 4]        0
+Dropout-12                               [1, 32, 4, 4]        0
+Conv2d-13                                [1, 32, 2, 2]        9248
+BatchNorm2d-14                           [1, 32, 2, 2]        64
+Dropout-15                               [1, 32, 2, 2]        0
+AvgPool2d-16                             [1, 32, 1, 1]        0
+Dropout-17                               [1, 32]              0
+Linear-18                                [1, 10]              330
+--------------------------------------------------------------------------------
+Total params: 17,994
+================================================================================
+
+Training Parameters:
+--------------------------------------------------------------------------------
+Parameter                      Value
+--------------------------------------------------------------------------------
+Batch Size                     512
+Learning Rate                  0.03
+Momentum                       0.9
+Weight Decay                   0.0005
+Dropout Rate                   0.05
+Number of Epochs               20
+Device                         cuda
+Number of Workers              0
+--------------------------------------------------------------------------------
 Epoch    Train Loss  Train Acc%  Valid Loss  Valid Acc%
 [2024-12-22 22:55:59] -------------------------------------------------------
 [2024-12-22 22:56:10]   1      0.4290     89.74     0.0872     97.68
